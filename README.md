@@ -1,3 +1,4 @@
-# frmwrkDeep2 : framework per esperimenti con reti neurali
+# frmwrkDeep2 : 
+### framework per esperimenti con reti neurali
 ---
 inizio
