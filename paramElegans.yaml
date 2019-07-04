@@ -1,0 +1,32 @@
+## FIle Parametri scritto con YAML
+
+
+file:
+    input: ./inputData/elegansData.data
+    dirOut: ./out2Conv/Elegans
+    
+    output: fout_Elegans
+
+parametri_rete:   
+    kernel_length: [3, 5, 7, 9]
+    filters1: 32
+    filters2: 64
+
+training:
+# CAMBIARE IL NUMERO DI EPOCHE
+    # epochs:  [10, 20, 30, 40, 50, 60 ]
+    epochs:  [10, 20, 30, 40]
+    k_fold: 10
+    folds: 2
+    
+    batch_size: 40
+    validation_split: 0.1
+    verbose: 0
+    
+    training_size: -1
+    shuffle: False
+    
+
+
+    
+    
