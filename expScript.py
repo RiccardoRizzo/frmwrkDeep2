@@ -23,15 +23,19 @@ if __name__ == '__main__':
     Esegue gli esperimenti in serie 
     """
     
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-par', required=True, type=str,
+    parser = argparse.ArgumentParser(description=" Lancia la serie di esperimenti." )
+    parser.add_argument('-fpar', required=True, type=str,
+            help="nome del file dei parametri esperimento")
+    parser.add_argument('-outdir', required=True, type=str,
     # richiede il nome del file di parametri
             help='nome della directory dove mettere i file errore e log')
     
     opt = parser.parse_args()
 
-    dirTemp=opt.par
-    
+    dirTemp=opt.outdir
+    filePar=opt.fpar
+
+
     if not os.path.exists(dirTemp):
         os.makedirs(dirTemp)
 
@@ -41,7 +45,7 @@ if __name__ == '__main__':
 
 
     #-------------------------------------------------------------------
-    filePar="paramElegans.yaml"
+    #filePar="paramElegans.yaml"
     nomeEsperimento = "esperimento :" + filePar
     
     print("""\n::::::""" + nomeEsperimento + """ ::::::""")    

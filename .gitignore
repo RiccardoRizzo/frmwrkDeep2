@@ -1,0 +1,80 @@
+# Esempio di regole da inserire in un file .gitignore
+# Con il carattere cancelletto si indica l'inizio di una riga di commento
+
+# ignora il file file_da_ignorare.txt
+# ignora anche nome_cartella/file_da_ignorare.txt
+file_da_ignorare.txt
+
+# ignora il file file_da_ignorare.txt solo all'interno della directory base
+# NON ignora nome_cartella/file_da_ignorare.txt
+/file_da_ignorare.txt
+
+# ? corrisponde a un singolo carattere
+# Vengono quindi ignorati file del tipo
+# file1.txt, fileA.txt, nome_cartella/file1.txt
+file?.txt
+
+# [set_di_caratteri] per specificare un set di caratteri
+# Vengono ignorati i file file_a.txt e file_b.txt, ma non file_c.txt
+# nella cartella base o in una sottocartella 
+file_[ab].txt
+
+# [A-Z] per specificare un range di caratteri
+# vengono ignorati i file com fooA.txt e fooE.txt
+foo[A-Z].txt
+
+# vengono ignorati i file come foo0.txt e foo2.txt
+foo[0-9].txt
+
+# il carattere * effettua il match di zero o più caratteri
+# vengono ignorati i file come archivio.zip o cartella/archivio.zip
+*.zip
+
+# il carattere ! nega il pattern specificato
+# i file che per qualche regola precedente vengono ignorati,
+# vengono nuovamente inclusi
+# Per esempio 'archivio_speciale.zip' non verrà ignorato più
+!archivio_speciale.zip 
+
+# usando due asterischi **, viene eseguito il match di una directory
+# nella cartella base o qualsiasi altra cartella del progetto
+# La regola seguente ignora file come:
+#
+# images/img.jpeg
+# images/december/snow.png
+# asset/images/example.gif
+**/images
+**/inputData
+**/out2Conv
+**/__pycache__
+
+
+# se non si inserisce la slash finale
+# vengono ignorati file e il contenuto delle cartelle
+# aventi quel nome
+# La regola sottostante ignora:
+# asset
+# asset/esempio.png
+# asset/images/immagine.jpeg
+# dicembre/asset
+# dicembre/asset/immagine_1.gif
+asset
+
+# Usando la slash finale si indica che si tratta di una directory
+# La regola seguente ignora file del tipo:
+# asset/img.jpeg
+# asset/images/file.png
+# dicembre/asset/immagine.png
+# dicembre/asset/immagini/a.webp
+asset/
+
+# La regola seguente ignora il file todos.txt nella cartella tasks
+tasks/todos.txt
+
+# ignora TUTTI i file nella directory build
+# non è possibile includere nuovamente un file se la directory in cui
+# è contenuto viene ignorata
+build/
+
+# Il doppio asterisco ** esegue il match di zero o più directory
+logs/**/error.log
