@@ -31,12 +31,13 @@ if __name__ == '__main__':
                 nella sola prima riga, \
                 formattati secondo l'esempio in esempio.yaml")
 
-    parser.add_argument('-outdir', required=True, type=str,
-            help='nome della directory dove mettere i file errore e log')
+    parser.add_argument('-logdir', required=True, type=str,
+            help='nome della directory dove mettere i file errore e log. \
+                I file di output saranno nella directory indicata nel file yaml')
     
     opt = parser.parse_args()
 
-    dirTemp=opt.outdir
+    dirTemp=opt.logdir
 
     fin = open(opt.lpar, "r")
     listaFile=fin.readline()

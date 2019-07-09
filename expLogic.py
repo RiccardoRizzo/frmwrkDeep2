@@ -184,7 +184,7 @@ def main(fileParam):
     Gli elementi di nome "foldX" contengono la matrice di confusione 
     memorizzata come :
         classe reale sulle righe
-        classe predeta sulle colonne
+        classe predetta sulle colonne
         
     time:
         tempo di training in secondi
