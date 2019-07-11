@@ -198,24 +198,27 @@ def main(fileParam):
         cfg = yaml.load(ymlfile)
     
     # apro il dataframe e carico i dati
-    inData = pd.read_pickle(cfg["file"]["input"])
+    inData = pd.read_pickle(cfg["file"]["input"])  # <<<<<<<<<<
+    
 
     # se la directory di output non esiste la crea
     if not os.path.exists(cfg["file"]["dirOut"]):
         os.makedirs(cfg["file"]["dirOut"])
 
     # definisco le colonne di input e di output
-    inCol="4x"
+    inCol="4x"       # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     outCol="label"      
     
-    k=10
+    k=10        # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    
     # crea la lista di indici per il k fold
     fold=dividiDataset(inData, inCol, outCol, k)
     
     # history = TrainingHistory()
     
-    classi=["linker", "nucleosome"]
+    classi=["linker", "nucleosome"]     # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     
+
     # al momento per l'output uso un dict
     # scrive nella variabile di output 
     # la descrizione del programma
@@ -273,7 +276,7 @@ def main(fileParam):
                     y_pred = cm.predict_classes(modello, X_test)
 
                     # calcola la matrice di confusione
-                    numClassi=2
+                    numClassi=2             # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     m=calcConfMatr(y_pred, y_true, len(classi))
 
                     grp.create_dataset("confMat", data=m)

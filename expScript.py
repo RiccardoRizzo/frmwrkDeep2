@@ -59,15 +59,15 @@ if __name__ == '__main__':
     for filePar in lfile:
 
 
-        #-------------------------------------------------------------------
-
-        nomeEsperimento = "esperimento :" + filePar
-        
+        nomeEsperimento = "esperimento :" + filePar        
         print("""\n::::::""" + nomeEsperimento + """ ::::::""")    
+        #--------------------------
+        # prepara la stringa per il comando di run
         exp= "python expLogic.py -par " + filePar + \
                                 " > " + dirTemp + filePar + "_rapp.out" + \
                                 " 2> "+ dirTemp + filePar+ "_rapp.err"
-        ### tempo di run
+        ### esegue il run
+        #--------------------------
         start_time = time.time()
         subprocess.call(exp, shell=True)
         runtime=(time.time() - start_time)
@@ -76,6 +76,7 @@ if __name__ == '__main__':
 
 
         print(""":::::: postProcessing ::::::""")
+        #--------------------------
         rendering= "python expRend.py -par " + filePar + \
                                 " > " + dirTemp + filePar + "_rend_rapp.out" + \
                                 " 2> "+ dirTemp + filePar+ "_rend_rapp.err"
@@ -83,16 +84,12 @@ if __name__ == '__main__':
 
 
         # email risultati
+        #--------------------------
         subject = "Esperimenti " + filePar
         body = "finiti tutti gli esperimenti"
         mail.send_email(dm.user, dm.pwd, dm.recipient, subject, body)
 
-        #-------------------------------------------------------------------
-    
-    
-
-    
-    
+   
     
     print("""\nFINE ESPERIMENTI ---------------------------------------""")
     
