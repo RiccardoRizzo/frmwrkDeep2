@@ -209,17 +209,17 @@ def main(fileParam):
         os.makedirs(cfg["file"]["dirOut"])
 
     # definisco le colonne di input e di output
-    inCol="4x"       # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    outCol="label"      
+    inCol=cfg["file"]["inCol"]  
+    outCol=cfg["file"]["outCol"]      
     
-    k=10        # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    k=cfg["training"]["k_fold"] 
     
     # crea la lista di indici per il k fold
     fold=dividiDataset(inData, inCol, outCol, k)
     
     # history = TrainingHistory()
     
-    classi=["linker", "nucleosome"]     # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    classi=cfg["file"]["nameClasses"] 
     
 
     # al momento per l'output uso un dict
@@ -246,10 +246,12 @@ def main(fileParam):
         
         for kk in cfg["parametri_rete"]["kernel_length"]:
 
-            print("crea il gruppo relativo alla dimensione kk del kernel")
+            print("crea il gruppo relativo alla dimensione kk del kernel; kk="+str(kk) )
             grpK = f.create_group("k=" + str(kk))
 
             for epochs in cfg["training"]["epochs"]:
+
+                print("Epoca " +str(epochs) + " di " +str(len(cfg["training"]["epochs"])))
 
                 print("crea il gruppo relativo al numero di epoche")
                 grpE = grpK.create_group("epochs=" + str(epochs))
@@ -260,6 +262,9 @@ def main(fileParam):
 
                 # inizia il ciclo del k-fold
                 for i in range(len(fold)):
+
+                    print("fold " + str(i) + "di " + str(len(fold)) )
+
                     # crea il sottogruppo del fold
                     grp = grpE.create_group("fold_" + str(i))
 
@@ -279,7 +284,7 @@ def main(fileParam):
                     y_pred = cm.predict_classes(modello, X_test)
 
                     # calcola la matrice di confusione
-                    numClassi=2             # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                    # numClassi=len(classi) 
                     m=calcConfMatr(y_pred, y_true, len(classi))
 
                     grp.create_dataset("confMat", data=m)
