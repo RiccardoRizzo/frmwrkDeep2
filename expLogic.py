@@ -65,8 +65,11 @@ def estraiDati(listaIndici, dataframe, etichettaInput, etichettaOutput):
     """
      
     # seleziona le righe e colonne corrette
-    X=dataframe.ix[listaIndici, etichettaInput].values
-    Y=dataframe.ix[listaIndici, etichettaOutput].values
+    colInput=dataframe.columns.get_loc(etichettaInput)
+    X=dataframe.iloc[listaIndici, colInput].values
+
+    colOutput=dataframe.columns.get_loc(etichettaOutput)
+    Y=dataframe.iloc[listaIndici, colOutput].values
     
     X, Y = reshape(X, Y)
     
@@ -195,7 +198,7 @@ def main(fileParam):
     # la doc string sara' inserita nel file dei risultati
 
     with open(fileParam, 'r') as ymlfile:
-        cfg = yaml.load(ymlfile)
+        cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
     
     # apro il dataframe e carico i dati
     inData = pd.read_pickle(cfg["file"]["input"])  # <<<<<<<<<<
