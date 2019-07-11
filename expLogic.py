@@ -263,7 +263,7 @@ def main(fileParam):
                 # inizia il ciclo del k-fold
                 for i in range(len(fold)):
 
-                    print("fold " + str(i) + "di " + str(len(fold)) )
+                    print("fold " + str(i) + " di " + str(len(fold)) )
 
                     # crea il sottogruppo del fold
                     grp = grpE.create_group("fold_" + str(i))
