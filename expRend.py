@@ -31,7 +31,7 @@ holoview : http://holoviews.org/getting_started/index.html
 #===========================================================================
 def main(fileParam):
     with open(fileParam, 'r') as ymlfile:
-        cfg = yaml.load(ymlfile)
+        cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
     # legge il file di output dei programmi
     inFile=fout=cfg["file"]["dirOut"] + "/" + cfg["file"]["output"]+".hdf5" 
     #lr.esplora(inFile)
